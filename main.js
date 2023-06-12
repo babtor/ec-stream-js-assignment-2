@@ -13,33 +13,39 @@ function createTasks() {
     let descriptionDiv = document.createElement("div");
     descriptionDiv.textContent = userInputDescription;
     taskText.appendChild(descriptionDiv);
-    createInputDescription.remove();
-    descButton.remove();
   });
 
   let taskComplete = false;
   const taskText = document.createElement("div");
   taskText.textContent = userInput;
+
+  const taskStatus = document.createElement("div");
+
   const container = document.getElementById("taskContainer");
+  const checkBoxContainer = document.createElement("div");
 
   const createCheckBox = document.createElement("input");
   createCheckBox.type = "checkbox";
 
   createCheckBox.addEventListener("change", function () {
-    if (createCheckBox.checked) {
+    if (this.checked) {
       console.log("Checkbox is checked");
       createCheckBox.style.accentColor = "green";
       taskComplete = true;
+      taskStatus.textContent = "Task complete";
     } else {
       taskComplete = false;
+      taskStatus.textContent = "Task unfinished";
       console.log("Checkbox is unchecked");
     }
   });
 
   container.appendChild(taskText);
-  taskText.appendChild(createCheckBox);
-  taskText.appendChild(createInputDescription);
-  taskText.appendChild(descButton);
+  container.appendChild(checkBoxContainer);
+  container.appendChild(taskStatus);
+  checkBoxContainer.appendChild(createCheckBox);
+  checkBoxContainer.appendChild(createInputDescription);
+  checkBoxContainer.appendChild(descButton);
 
   fetch("https://dummyjson.com/todos/add", {
     method: "POST",
