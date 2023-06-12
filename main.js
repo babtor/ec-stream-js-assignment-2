@@ -13,6 +13,9 @@ function createTasks() {
     let descriptionDiv = document.createElement("div");
     descriptionDiv.textContent = userInputDescription;
     taskText.appendChild(descriptionDiv);
+
+    createInputDescription.remove();
+    descButton.remove();
   });
 
   let taskComplete = false;
