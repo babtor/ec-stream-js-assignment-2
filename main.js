@@ -6,6 +6,12 @@ function createTasks() {
   createInputDescription.type = "text";
   createInputDescription.id = "inputDesc";
 
+  const removeButton = document.createElement("button");
+  removeButton.textContent = "Remove";
+  removeButton.addEventListener("click", function () {
+    singleContainer.remove();
+  });
+
   const descButton = document.createElement("button");
   descButton.textContent = "Post description";
   descButton.addEventListener("click", function () {
@@ -78,6 +84,7 @@ function createTasks() {
   singleContainer.appendChild(taskText);
   singleContainer.appendChild(createInputDescription);
   singleContainer.appendChild(descButton);
+  singleContainer.appendChild(removeButton);
   singleContainer.appendChild(checkBoxContainer);
   checkBoxContainer.appendChild(createCheckBox);
   singleContainer.appendChild(taskStatus);
