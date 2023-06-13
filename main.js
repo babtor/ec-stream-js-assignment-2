@@ -1,10 +1,13 @@
+fetchCounter = 0;
+
 function createTasks() {
   const userInput = document.getElementById("userInput").value;
+  const fetchId = "task-" + fetchCounter;
 
   const createInputDescription = document.createElement("input");
   createInputDescription.placeholder = "Describe your task";
   createInputDescription.type = "text";
-  createInputDescription.id = "inputDesc";
+  createInputDescription.id = "inputDesc-" + fetchId;
 
   const removeButton = document.createElement("button");
   removeButton.textContent = "Remove";
@@ -15,10 +18,12 @@ function createTasks() {
   const descButton = document.createElement("button");
   descButton.textContent = "Post description";
   descButton.addEventListener("click", function () {
-    let userInputDescription = document.getElementById("inputDesc").value;
+    let userInputDescription = document.getElementById(
+      "inputDesc-" + fetchId
+    ).value;
     let descriptionDiv = document.createElement("div");
     descriptionDiv.textContent = userInputDescription;
-    descriptionDiv.id = "descriptionDiv";
+    descriptionDiv.id = "descriptionDiv" + fetchId;
     taskText.appendChild(descriptionDiv);
 
     createInputDescription.remove();
@@ -82,12 +87,14 @@ function createTasks() {
   createStartDate();
   container.appendChild(singleContainer);
   singleContainer.appendChild(taskText);
-  singleContainer.appendChild(createInputDescription);
+  taskText.appendChild(createInputDescription);
   singleContainer.appendChild(descButton);
   singleContainer.appendChild(removeButton);
   singleContainer.appendChild(checkBoxContainer);
   checkBoxContainer.appendChild(createCheckBox);
   singleContainer.appendChild(taskStatus);
+
+  fetchCounter++;
 
   fetch("https://dummyjson.com/todos/add", {
     method: "POST",
@@ -95,7 +102,7 @@ function createTasks() {
     body: JSON.stringify({
       todo: userInput,
       completed: taskComplete,
-      userId: 5,
+      userId: fetchCounter,
     }),
   })
     .then((res) => res.json())
