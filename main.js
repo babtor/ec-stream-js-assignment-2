@@ -40,13 +40,40 @@ function createTasks() {
       createCheckBox.style.accentColor = "green";
       taskComplete = true;
       taskStatus.textContent = "Task complete";
+      createEndDate();
     } else {
       taskComplete = false;
       taskStatus.textContent = "Task unfinished";
       console.log("Checkbox is unchecked");
+      removeDate();
     }
   });
 
+  let today = new Date();
+  let year = today.getFullYear().toString().padStart(2, "0");
+  let month = today.getMonth().toString().padStart(2, "0");
+  let day = today.getDate().toString().padStart(2, "0");
+  let currentDate = year + "-" + month + "-" + day;
+  let dateDivEnd = document.createElement("div");
+  dateDivEnd.id = "dates";
+  dateDivEnd.textContent = currentDate;
+  let dateDivStart = document.createElement("div");
+  dateDivStart.id = "dates";
+  dateDivStart.textContent = currentDate;
+
+  function createStartDate() {
+    singleContainer.appendChild(dateDivStart);
+  }
+
+  function createEndDate() {
+    singleContainer.appendChild(dateDivEnd);
+  }
+
+  function removeDate() {
+    dateDivEnd.remove();
+  }
+
+  createStartDate();
   container.appendChild(singleContainer);
   singleContainer.appendChild(taskText);
   singleContainer.appendChild(createInputDescription);
