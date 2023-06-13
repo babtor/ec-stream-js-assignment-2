@@ -12,6 +12,7 @@ function createTasks() {
     let userInputDescription = document.getElementById("inputDesc").value;
     let descriptionDiv = document.createElement("div");
     descriptionDiv.textContent = userInputDescription;
+    descriptionDiv.id = "descriptionDiv";
     taskText.appendChild(descriptionDiv);
 
     createInputDescription.remove();
@@ -20,11 +21,14 @@ function createTasks() {
 
   let taskComplete = false;
   const taskText = document.createElement("div");
+  taskText.id = "taskText";
   taskText.textContent = userInput;
 
   const taskStatus = document.createElement("div");
 
   const container = document.getElementById("taskContainer");
+  const singleContainer = document.createElement("div");
+  singleContainer.id = "singleContainer";
   const checkBoxContainer = document.createElement("div");
 
   const createCheckBox = document.createElement("input");
@@ -43,12 +47,13 @@ function createTasks() {
     }
   });
 
-  container.appendChild(taskText);
-  container.appendChild(checkBoxContainer);
-  container.appendChild(taskStatus);
+  container.appendChild(singleContainer);
+  singleContainer.appendChild(taskText);
+  singleContainer.appendChild(createInputDescription);
+  singleContainer.appendChild(descButton);
+  singleContainer.appendChild(checkBoxContainer);
   checkBoxContainer.appendChild(createCheckBox);
-  checkBoxContainer.appendChild(createInputDescription);
-  checkBoxContainer.appendChild(descButton);
+  singleContainer.appendChild(taskStatus);
 
   fetch("https://dummyjson.com/todos/add", {
     method: "POST",

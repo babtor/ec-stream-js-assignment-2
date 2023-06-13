@@ -1,0 +1,60 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 0.8fr;
+  grid-template-areas:
+    "header"
+    "main";
+}
+
+header {
+  grid-area: header;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+main {
+  grid-area: main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#taskContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+
+#singleContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+#descriptionDiv {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid black;
+}
+
+#taskText {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
