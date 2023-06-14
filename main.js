@@ -22,8 +22,10 @@ function createTasks() {
       "inputDesc-" + fetchId
     ).value;
     let descriptionDiv = document.createElement("div");
+
     descriptionDiv.textContent = userInputDescription;
     descriptionDiv.id = "descriptionDiv" + fetchId;
+
     taskText.appendChild(descriptionDiv);
 
     createInputDescription.remove();
@@ -33,7 +35,7 @@ function createTasks() {
   let taskComplete = false;
   const taskText = document.createElement("div");
   taskText.id = "taskText";
-  taskText.textContent = userInput;
+  taskText.textContent = userInput + ":";
 
   const taskStatus = document.createElement("div");
 
@@ -50,7 +52,7 @@ function createTasks() {
       console.log("Checkbox is checked");
       createCheckBox.style.accentColor = "green";
       taskComplete = true;
-      taskStatus.textContent = "Task complete";
+      taskStatus.textContent = "Task completed";
       createEndDate();
     } else {
       taskComplete = false;
